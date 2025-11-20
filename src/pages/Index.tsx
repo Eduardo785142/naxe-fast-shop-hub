@@ -42,11 +42,8 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="relative hidden lg:block">
-              <div className="flex gap-8 items-end justify-center">
-                <img src={heroCreatorFemale} alt="Creator feliz" className="w-80 h-auto object-contain filter drop-shadow-[0_20px_60px_rgba(168,85,247,0.4)] hover:scale-105 transition-transform duration-500" />
-                <img src={heroCreatorMale} alt="Creator feliz" className="w-80 h-auto object-contain filter drop-shadow-[0_20px_60px_rgba(168,85,247,0.4)] hover:scale-105 transition-transform duration-500" />
-              </div>
+            <div className="relative hidden lg:flex justify-center items-center">
+              <img src={heroCreatorFemale} alt="Creator feliz" className="w-96 h-auto object-contain filter drop-shadow-[0_20px_60px_rgba(168,85,247,0.4)] hover:scale-105 transition-transform duration-500" />
             </div>
           </div>
         </div>
