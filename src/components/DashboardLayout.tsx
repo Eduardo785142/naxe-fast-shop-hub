@@ -7,10 +7,10 @@ import {
   Palette,
   Settings,
   LogOut,
-  Sparkles,
   ExternalLink,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import naxeLogo from "@/assets/naxe-logo.png";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -34,9 +34,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <div className="flex h-full flex-col">
           {/* Logo */}
           <div className="flex h-16 items-center gap-3 border-b border-border px-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-purple-blue shadow-glow-primary">
-              <Sparkles className="h-5 w-5 text-white" />
-            </div>
+            <img src={naxeLogo} alt="Naxe Fast Shop" className="h-8 w-auto" />
             <span className="font-space text-xl font-bold">Naxe Fast Shop</span>
           </div>
 
@@ -81,9 +79,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         {/* Mobile header */}
         <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-border bg-card/80 backdrop-blur-xl px-4 lg:hidden">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-purple-blue shadow-glow-primary">
-              <Sparkles className="h-5 w-5 text-white" />
-            </div>
+            <img src={naxeLogo} alt="Naxe Fast Shop" className="h-8 w-auto" />
             <span className="font-space text-xl font-bold">Naxe Fast Shop</span>
           </div>
           <Button
