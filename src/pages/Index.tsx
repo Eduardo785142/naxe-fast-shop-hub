@@ -7,7 +7,7 @@ import heroCreatorMale from "@/assets/hero-creator-male.png";
 import phoneInstagram from "@/assets/phone-instagram.png";
 import phoneTiktok from "@/assets/phone-tiktok.png";
 import analyticsCreator from "@/assets/analytics-creator.png";
-import creatorsGroup from "@/assets/creators-group.png";
+import creatorsGroup from "@/assets/creators-group.svg";
 
 export default function Index() {
   return (
