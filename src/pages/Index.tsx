@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Palette, TrendingUp, ExternalLink, BarChart3, Share2, Zap, Heart, MessageCircle, Users } from "lucide-react";
 import naxeLogo from "@/assets/naxe-logo.png";
-import heroCreatorFemale from "@/assets/hero-creator-female.png";
+import heroCreatorFemale from "@/assets/hero-creator-female.svg";
 import heroCreatorMale from "@/assets/hero-creator-male.png";
 import phoneInstagram from "@/assets/phone-instagram.png";
 import phoneTiktok from "@/assets/phone-tiktok.png";
