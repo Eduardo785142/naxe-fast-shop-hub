@@ -43,11 +43,9 @@ export default function Index() {
             </div>
 
             <div className="relative hidden lg:block">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-purple-blue opacity-20 blur-3xl rounded-full" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-pink-purple opacity-20 blur-3xl rounded-full" />
-              <div className="relative flex gap-6 items-center justify-center">
-                <img src={heroCreatorFemale} alt="Creator feliz" className="w-64 object-contain drop-shadow-2xl" />
-                <img src={heroCreatorMale} alt="Creator feliz" className="w-64 object-contain drop-shadow-2xl" />
+              <div className="flex gap-8 items-end justify-center">
+                <img src={heroCreatorFemale} alt="Creator feliz" className="w-80 h-auto object-contain filter drop-shadow-[0_20px_60px_rgba(168,85,247,0.4)] hover:scale-105 transition-transform duration-500" />
+                <img src={heroCreatorMale} alt="Creator feliz" className="w-80 h-auto object-contain filter drop-shadow-[0_20px_60px_rgba(168,85,247,0.4)] hover:scale-105 transition-transform duration-500" />
               </div>
             </div>
           </div>
@@ -63,9 +61,9 @@ export default function Index() {
           <p className="font-inter text-xl text-muted-foreground">
             De graça! Crie sua mini-loja em minutos
           </p>
-          <div className="flex gap-8 justify-center items-center mt-12">
-            <img src={phoneInstagram} alt="Instagram" className="w-48 h-auto object-contain drop-shadow-2xl" />
-            <img src={phoneTiktok} alt="TikTok" className="w-48 h-auto object-contain drop-shadow-2xl" />
+          <div className="flex gap-12 justify-center items-center mt-16">
+            <img src={phoneInstagram} alt="Instagram" className="w-64 h-auto object-contain filter drop-shadow-[0_30px_80px_rgba(225,48,108,0.5)] hover:scale-110 transition-transform duration-500" />
+            <img src={phoneTiktok} alt="TikTok" className="w-64 h-auto object-contain filter drop-shadow-[0_30px_80px_rgba(37,244,238,0.5)] hover:scale-110 transition-transform duration-500" />
           </div>
         </div>
 
@@ -134,10 +132,9 @@ export default function Index() {
 
       {/* Analytics Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative order-2 lg:order-1">
-            <div className="absolute inset-0 bg-gradient-purple-blue opacity-20 blur-3xl" />
-            <img src={analyticsCreator} alt="Creator analisando métricas" className="relative w-full h-auto object-contain drop-shadow-2xl rounded-2xl" />
+            <img src={analyticsCreator} alt="Creator analisando métricas" className="w-full h-auto object-contain filter drop-shadow-[0_40px_100px_rgba(168,85,247,0.6)] hover:scale-105 transition-transform duration-700" />
           </div>
           <div className="order-1 lg:order-2">
             <BarChart3 className="h-16 w-16 text-primary mb-6" />
@@ -173,8 +170,7 @@ export default function Index() {
         </div>
 
         <div className="mt-24 relative">
-          <div className="absolute inset-0 bg-gradient-purple-blue opacity-20 blur-3xl" />
-          <div className="relative p-8 rounded-2xl border border-border bg-card/50 backdrop-blur-sm">
+          <div className="p-8 rounded-2xl border border-border bg-card/30 backdrop-blur-sm hover:bg-card/40 transition-all duration-500">
             <div className="space-y-6">
               <div className="flex items-center justify-between p-4 rounded-xl bg-background/50">
                 <span className="font-inter text-sm text-muted-foreground">Vendas hoje</span>
@@ -262,12 +258,11 @@ export default function Index() {
           <h2 className="font-space text-3xl font-bold mb-4">
             Junte-se a milhares de creators
           </h2>
-          <p className="font-inter text-xl text-muted-foreground mb-12">
+          <p className="font-inter text-xl text-muted-foreground mb-16">
             Influencers e empreendedores já estão vendendo com o Naxe Fast Shop
           </p>
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-blue-cyan opacity-20 blur-3xl" />
-            <img src={creatorsGroup} alt="Grupo de creators felizes" className="relative w-full max-w-4xl mx-auto h-auto object-contain drop-shadow-2xl rounded-2xl" />
+            <img src={creatorsGroup} alt="Grupo de creators felizes" className="w-full max-w-5xl mx-auto h-auto object-contain filter drop-shadow-[0_40px_120px_rgba(37,244,238,0.5)] hover:scale-105 transition-transform duration-700" />
           </div>
         </div>
       </div>
