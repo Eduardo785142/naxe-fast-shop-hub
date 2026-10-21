@@ -64,3 +64,21 @@ Deixe `API_INTERNAL_URL` sem configuração para o backend embutido. Uma URL de 
 O artefato standalone inclui as migrações SQL e o cliente Prisma. Se banco, Redis ou variáveis estiverem incorretos, a inicialização falha explicitamente e exige consultar os **logs de execução**, não apenas os logs de build. Um build concluído não prova conectividade dos serviços externos.
 
 As tabelas da aplicação recebem RLS sem políticas anônimas. A conexão privada do backend, dona das tabelas, continua operando; a API pública de dados do Supabase não recebe autorização para ler usuários, endereços ou lances diretamente.
+
+### Certificado SSL do PostgreSQL no Supabase
+
+A aplicação inclui `certificates/supabase-prod-ca-2021.crt`, certificado público
+Supabase Root 2021 CA fornecido pelo proprietário do projeto (válido até abril
+2031). Migrações e Prisma usam a mesma configuração para hosts `*.supabase.co`
+e `*.pooler.supabase.com`, com validação de cadeia e hostname habilitada.
+Parâmetros SSL da URL são substituídos pela configuração explícita para evitar
+que `sslmode=require` descarte a CA. Outros parâmetros e as credenciais são
+preservados. Bancos locais e outros provedores mantêm suas configurações.
+
+O arquivo é incluído no artefato Next.js standalone. Não é necessário cadastrar
+uma variável adicional na Hostinger nem alterar a senha ou o `DATABASE_URL`.
+Não use `NODE_TLS_REJECT_UNAUTHORIZED=0`. Para verificar a configuração:
+`node --test scripts/postgres-config.test.mjs`.
+
+Impressão SHA-256 da CA:
+`80:70:25:AD:50:D4:ED:21:9D:2C:9C:7D:29:9C:00:4F:82:4E:B0:0C:F7:F6:5A:FE:F6:07:D0:7B:72:E6:CA:FA`.

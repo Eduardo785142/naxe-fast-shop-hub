@@ -3,7 +3,7 @@ const config = {
   poweredByHeader: false,
   output: "standalone",
   outputFileTracingIncludes: {
-    "/*": ["./prisma/migrations/**/*", "./node_modules/.prisma/client/**/*"],
+    "/*": ["./prisma/migrations/**/*", "./node_modules/.prisma/client/**/*", "./certificates/*.crt"],
   },
   eslint: { dirs: ["app", "live", "server", "prisma", "tests"] },
   experimental: { cpus: 2 },

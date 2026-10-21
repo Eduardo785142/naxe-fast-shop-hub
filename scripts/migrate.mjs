@@ -2,8 +2,9 @@ import { pathToFileURL } from "node:url";
 import { Client } from "pg";
 import { readdir, readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
+import { postgresConfig } from "./postgres-config.mjs";
 export async function runMigrations() {
-  const client = new Client({ connectionString: process.env.DATABASE_URL });
+  const client = new Client(postgresConfig());
   await client.connect();
   try {
     await client.query("SELECT pg_advisory_lock(8710291)");
