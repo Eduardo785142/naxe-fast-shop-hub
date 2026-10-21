@@ -24,7 +24,7 @@ npm run api:dev  # API persistente, porta 4000
 npm run dev      # Next.js, porta 3000
 ```
 
-Acesse a porta 3000 em seu navegador local. Para servir o build: `npm run build` e `npm run start`, mantendo a API ativa. O script `scripts/setup.sh` prepara as dependências e valida o build; não mantém processos da aplicação vivos. No ambiente cloud, use o checkout existente; não é necessário criar um worktree.
+Acesse a porta 3000 em seu navegador local. Para servir o build: `npm run build` e `NAXE_EMBED_API=false npm run start`, mantendo a API ativa. Na hospedagem standalone, o Next inicia a API automaticamente; veja `docs/HOSTINGER.md`. O script `scripts/setup.sh` prepara as dependências e valida o build; não mantém processos da aplicação vivos. No ambiente cloud, use o checkout existente; não é necessário criar um worktree.
 
 `.env.live.local` é ignorado pelo Git e lido pelos comandos da API, geração, migração e seed. O Next lê suas variáveis de deployment no ambiente do processo ou em `.env.local`. As variáveis antigas `VITE_SUPABASE_*` pertencem ao app legado e não são necessárias para os novos leilões.
 

@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "next dev -H 0.0.0.0 -p 3000",
-    "build": "next build",
+    "build": "npm run db:generate && node scripts/build.mjs",
     "build:dev": "vite build --mode development",
-    "lint": "eslint app live server prisma tests",
+    "lint": "eslint instrumentation.ts app live server prisma tests",
     "preview": "vite preview",
     "legacy:dev": "vite",
     "legacy:build": "vite build",
@@ -20,7 +20,7 @@
     "test": "node --env-file-if-exists=.env.live.local --import tsx --test --test-concurrency=1 tests/*.test.ts",
     "test:e2e": "playwright test",
     "lint:legacy": "eslint src tailwind.config.ts",
-    "build:hostinger": "npm run db:generate && next build",
+    "build:hostinger": "npm run build",
     "start:hostinger": "node scripts/start-hostinger.mjs"
   },
   "dependencies": {

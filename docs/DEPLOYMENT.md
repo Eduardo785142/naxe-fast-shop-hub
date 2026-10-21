@@ -9,7 +9,7 @@ Use um servidor Node persistente atrás de HTTPS, com PostgreSQL e Redis persist
 1. Instale Node 24 e rode `npm ci`, `npm run db:generate`.
 2. Crie `.env.live.local` com `DATABASE_URL`, `REDIS_URL`, `APP_ORIGIN` correspondendo exatamente à URL pública do frontend, `PORT=4000`, `DEMO_MODE=true`.
 3. Para uma homologação privada com seeds, configure `ENABLE_DEMO_SEED=true` e uma `DEMO_PASSWORD` exclusiva com pelo menos 12 caracteres. Em um banco novo, `npm run db:migrate` e `npm run db:seed`. O seed não muda senhas de usuários que já existem. Não exponha as contas demonstrativas com a senha padrão na Internet.
-4. `npm run build`; inicie `npm run start` e `npm run api:dev` como serviços supervisionados. Apesar do nome, `api:dev` executa um processo persistente sem watch. Defina `NODE_ENV=production` no backend apenas sob HTTPS: cookies ficam `Secure`.
+4. `npm run build`; inicie `NAXE_EMBED_API=false npm run start` e `npm run api:dev` como serviços supervisionados. Apesar do nome, `api:dev` executa um processo persistente sem watch. Defina `NODE_ENV=production` no backend apenas sob HTTPS: cookies ficam `Secure`.
 5. Encaminhe `/api/*` e `/socket.io` (incluindo Upgrade de WebSocket) à API. O frontend Next já possui rewrites locais. O proxy deve preservar cookies, Origin e Upgrade e ter timeout adequado para conexões persistentes. Não cacheie respostas autenticadas.
 6. Verifique `/api/health`, login, uma sala com dois compradores, reconexão, encerramento e persistência de pedido. Abra portas públicas somente para HTTPS.
 

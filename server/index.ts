@@ -1049,18 +1049,24 @@ const timer = setInterval(async () => {
     ticking = false;
   }
 }, 250);
-http.listen(
-  Number(process.env.PORT ?? 4000),
-  process.env.API_HOST ?? "0.0.0.0",
-  () =>
-    console.log(
-      JSON.stringify({
-        event: "api_ready",
-        port: Number(process.env.PORT ?? 4000),
-        mode: "sandbox",
-      }),
-    ),
-);
+await new Promise<void>((resolve, reject) => {
+  http.once("error", reject);
+  http.listen(
+    Number(process.env.NAXE_API_PORT ?? process.env.PORT ?? 4000),
+    process.env.API_HOST ?? "0.0.0.0",
+    () => {
+      console.log(
+        JSON.stringify({
+          event: "api_ready",
+          port: Number(process.env.NAXE_API_PORT ?? process.env.PORT ?? 4000),
+          mode: "sandbox",
+        }),
+      );
+      resolve();
+    },
+  );
+});
+
 async function shutdown() {
   clearInterval(timer);
   io.close();

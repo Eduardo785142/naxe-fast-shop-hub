@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const config = {
   poweredByHeader: false,
+  output: "standalone",
+  outputFileTracingIncludes: {
+    "/*": ["./prisma/migrations/**/*", "./node_modules/.prisma/client/**/*"],
+  },
   eslint: { dirs: ["app", "live", "server", "prisma", "tests"] },
   experimental: { cpus: 2 },
   async rewrites() {

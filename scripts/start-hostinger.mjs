@@ -99,7 +99,7 @@ try {
       "-p",
       String(port),
     ],
-    { NODE_ENV: "production" },
+    { NODE_ENV: "production", NAXE_EMBED_API: "false" },
   );
   frontend.once("error", (e) => {
     console.error(e.message);
