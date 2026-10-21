@@ -1,0 +1,192 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType = "client"
+  output = "../node_modules/.prisma/client"
+}
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+model User {
+ id String @id @default(uuid())
+ email String @unique
+ passwordHash String
+ name String
+ alias String @unique
+ role String @default("BUYER")
+ enabled Boolean @default(false)
+ termsAt DateTime?
+ createdAt DateTime @default(now())
+ addresses Address[]
+ payments PaymentMethodReference[]
+ sessions Session[]
+ seller Seller?
+ bids Bid[]
+ orders Order[]
+ messages ChatMessage[]
+ follows Follow[]
+}
+model Session {
+ id String @id
+ userId String
+ user User @relation(fields:[userId], references:[id], onDelete:Cascade)
+ expiresAt DateTime
+}
+model Address {
+ id String @id @default(uuid())
+ userId String
+ user User @relation(fields:[userId],references:[id])
+ kind String
+ postalCode String
+ street String
+ number String
+ city String
+ state String
+}
+model PaymentMethodReference {
+ id String @id @default(uuid())
+ userId String
+ user User @relation(fields:[userId],references:[id])
+ provider String @default("SANDBOX")
+ reference String
+ scenario String @default("APPROVED")
+}
+model Seller {
+ id String @id @default(uuid())
+ userId String @unique
+ user User @relation(fields:[userId],references:[id])
+ slug String @unique
+ displayName String
+ verified Boolean @default(false)
+ products Product[]
+ streams LiveStream[]
+ followers Follow[]
+}
+model Follow {
+ userId String
+ sellerId String
+ user User @relation(fields:[userId],references:[id])
+ seller Seller @relation(fields:[sellerId],references:[id])
+ @@id([userId,sellerId])
+}
+model Product {
+ id String @id @default(uuid())
+ sellerId String
+ seller Seller @relation(fields:[sellerId],references:[id])
+ name String
+ description String
+ category String
+ artwork String
+ stock Int @default(1)
+ weight Int @default(500)
+ height Int @default(10)
+ width Int @default(15)
+ length Int @default(20)
+ originPostalCode String @default("01001000")
+ lots AuctionLot[]
+}
+model LiveStream {
+ id String @id @default(uuid())
+ sellerId String
+ seller Seller @relation(fields:[sellerId],references:[id])
+ title String
+ category String
+ status String @default("SCHEDULED")
+ scheduledAt DateTime?
+ demonstration Boolean @default(true)
+ lots AuctionLot[]
+ messages ChatMessage[]
+}
+model AuctionLot {
+ id String @id @default(uuid())
+ streamId String
+ stream LiveStream @relation(fields:[streamId],references:[id])
+ productId String
+ product Product @relation(fields:[productId],references:[id])
+ position Int @default(0)
+ status String @default("READY")
+ startCents Int @default(0)
+ incrementCents Int @default(100)
+ bidMode String @default("FIXED")
+ durationSeconds Int @default(30)
+ extensionSeconds Int @default(10)
+ endsAt DateTime?
+ currentCents Int?
+ leaderId String?
+ version Int @default(0)
+ bids Bid[]
+ events AuctionEvent[]
+ result AuctionResult?
+ order Order?
+}
+model Bid {
+ id String @id @default(uuid())
+ attemptId String @unique
+ lotId String
+ lot AuctionLot @relation(fields:[lotId],references:[id])
+ userId String
+ user User @relation(fields:[userId],references:[id])
+ amountCents Int
+ shippingCents Int?
+ sequence Int
+ createdAt DateTime @default(now())
+ @@index([lotId,createdAt])
+ @@unique([lotId,sequence])
+}
+model AuctionEvent {
+ id String @id @default(uuid())
+ lotId String
+ lot AuctionLot @relation(fields:[lotId],references:[id])
+ type String
+ actorId String?
+ data Json
+ createdAt DateTime @default(now())
+}
+model AuctionResult {
+ id String @id @default(uuid())
+ lotId String @unique
+ lot AuctionLot @relation(fields:[lotId],references:[id])
+ winnerId String?
+ amountCents Int?
+ createdAt DateTime @default(now())
+}
+model Order {
+ id String @id @default(uuid())
+ lotId String @unique
+ lot AuctionLot @relation(fields:[lotId],references:[id])
+ buyerId String
+ buyer User @relation(fields:[buyerId],references:[id])
+ amountCents Int
+ shippingCents Int
+ totalCents Int
+ status String @default("PAID_SANDBOX")
+ shippingAddress Json
+ createdAt DateTime @default(now())
+ attempts PaymentAttempt[]
+}
+model PaymentAttempt {
+ id String @id @default(uuid())
+ orderId String
+ order Order @relation(fields:[orderId],references:[id])
+ status String
+ provider String @default("SANDBOX")
+ createdAt DateTime @default(now())
+}
+model ChatMessage {
+ id String @id @default(uuid())
+ streamId String
+ stream LiveStream @relation(fields:[streamId],references:[id])
+ userId String
+ user User @relation(fields:[userId],references:[id])
+ text String
+ hidden Boolean @default(false)
+ createdAt DateTime @default(now())
+}
+model AuditLog {
+ id String @id @default(uuid())
+ actorId String?
+ action String
+ resourceId String
+ data Json
+ createdAt DateTime @default(now())
+}

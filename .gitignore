@@ -22,3 +22,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.next/
+.env.live.local
+playwright-report/
+test-results/
+
+prisma/.prisma/
+*.tsbuildinfo
+
+# Hosting secrets must be entered through the provider, never committed.
+.env.*
+!.env.example
+!.env.hostinger.example
